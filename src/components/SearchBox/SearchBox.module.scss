@@ -6,5 +6,9 @@
 
   input {
     width: 250px;
+
+    &:focus {
+      background-color: lightblue;
+    }
   }
 }
