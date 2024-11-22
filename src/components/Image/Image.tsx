@@ -1,3 +1,7 @@
-export function Image() {
-  return <div>Image</div>;
+interface ImageInterface {
+  src: string;
+}
+
+export function Image({ src }: ImageInterface) {
+  return <img src={src} alt="Dog" />;
 }
