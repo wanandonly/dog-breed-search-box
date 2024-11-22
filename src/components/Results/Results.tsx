@@ -1,5 +1,17 @@
 import styles from "./Results.module.scss";
 
-export function Results() {
-  return <div className={styles.results}>Results</div>;
+interface Suggestions {
+  suggestions: string[];
+}
+
+export function Results({ suggestions }: Suggestions) {
+  return (
+    <ul className={styles.results}>
+      {suggestions.map((suggestion, index) => (
+        <li key={index} onClick={() => {}}>
+          {suggestion}
+        </li>
+      ))}
+    </ul>
+  );
 }
