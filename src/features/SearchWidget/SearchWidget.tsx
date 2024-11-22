@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Results } from "../../components/Results/Results";
 import { SearchBox } from "../../components/SearchBox/SearchBox";
 import styles from "./SearchWidget.module.scss";
+import { API_ENDPOINT } from "../../constants";
 
 interface HandleInputChange {
   target: HTMLInputElement;
@@ -10,10 +11,11 @@ interface HandleInputChange {
 export function SearchWidget() {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<string[] | []>([]);
+  const [dogBreedData, setDogBreedData] = useState<string[] | []>([]);
 
   const handleInputChange = (event: HandleInputChange) => {
     const value = event.target.value;
-    let possibleValues: string[] = ["Great Dane"];
+    let possibleValues: string[] = dogBreedData;
 
     setInputValue(value);
     if (value.length > 1) {
@@ -25,6 +27,28 @@ export function SearchWidget() {
       setSuggestions([]);
     }
   };
+
+  const getDogBreedData = async () => {
+    const url = `${API_ENDPOINT}breeds/list/all`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const json = await response.json();
+      setDogBreedData(Object.keys(json.message));
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Unknown error.";
+      return {
+        message,
+      };
+    }
+  };
+
+  useEffect(() => {
+    getDogBreedData();
+  }, []);
 
   return (
     <div className={styles.searchWidget}>
