@@ -1,10 +1,10 @@
-import { Header } from "../../components/Header/Header";
 import { Results } from "../../components/Results/Results";
+import styles from "./SearchWidget.module.scss";
 
 export function SearchWidget() {
   return (
     <div>
-      <Header />
+      <header className={styles.searchHeader}>Dog Breed Search Box</header>
       <Results />
     </div>
   );
