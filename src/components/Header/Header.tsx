@@ -1,3 +1,5 @@
+import styles from "./Header.module.scss";
+
 export function Header() {
-  return <div>Header</div>;
+  return <header className={styles.searchHeader}>Header</header>;
 }
