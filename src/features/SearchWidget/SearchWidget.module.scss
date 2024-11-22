@@ -1,3 +1,10 @@
-.searchHeader {
+.searchWidget {
+  border: 1px solid grey;
+  border-radius: 4px;
   margin: 16px;
+  padding: 16px;
+}
+
+.searchHeader {
+  font-weight: bold;
 }
