@@ -1,3 +1,16 @@
 .results {
-  margin: 16px 0;
+  position: absolute;
+  left: 163px;
+  top: 2px;
+  width: 236px;
+  border: 1px solid grey;
+  padding: 8px;
+  margin: 16px 0 0;
+  list-style-type: none;
+  background: lightblue;
+
+  li {
+    padding: 4px 0;
+    cursor: pointer;
+  }
 }
