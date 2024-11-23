@@ -65,7 +65,7 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
           onChange={handleInputChange}
         />
         {/* Results component will only when the suggestions length is greater than 0 */}
-        {suggestions.length > 0 && (
+        {suggestions.length > 0 ? (
           <Results
             suggestions={suggestions}
             getDogBreedImage={(e) => {
@@ -74,7 +74,7 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
               getDogBreedImage(e);
             }}
           />
-        )}
+        ) : null}
       </div>
       {/* If dogBreedImage state is  set then we display the random image chosen here */}
       {dogBreedImage ? <Image src={dogBreedImage} /> : null}
