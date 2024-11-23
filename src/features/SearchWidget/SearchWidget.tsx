@@ -6,6 +6,7 @@ import { API_ENDPOINT } from "../../constants";
 export function SearchWidget() {
   const [dogBreedData, setDogBreedData] = useState<string[] | []>([]);
 
+  // Make call to get all dog breeds and we pass this down to SearchBox component
   const getDogBreedData = async () => {
     const url = `${API_ENDPOINT}breeds/list/all`;
 

@@ -18,11 +18,14 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
   const [suggestions, setSuggestions] = useState<string[] | []>([]);
   const [dogBreedImage, setDogBreedImage] = useState("");
 
+  // Handle the input change here with the auto suggestion functionality
   const handleInputChange = (event: HandleInputChange) => {
     const value = event.target.value;
     let possibleValues: string[] = dogBreedData;
 
     setInputValue(value);
+
+    // if the entered input is greater than 1 we show possible selections
     if (value.length > 1) {
       const filteredSuggestions = possibleValues?.filter((suggestion) =>
         suggestion.toLowerCase().includes(value.toLowerCase())
@@ -33,6 +36,7 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
     }
   };
 
+  // Make call to get a random dog breed image if the passed down breed matches
   const getDogBreedImage = async (breed: string) => {
     const url = `${API_ENDPOINT}breed/${breed}/images/random`;
 
@@ -63,17 +67,19 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
           value={inputValue}
           onChange={handleInputChange}
         />
+        {/* Results component will only when the suggestions length is greater than 0 */}
         {suggestions.length > 0 && (
           <Results
             suggestions={suggestions}
             getDogBreedImage={(e) => {
-              // reset suggestions to hide search results when clicking on a name
+              // reset suggestions to hide search results when clicking on a name and make call to get dog image
               setSuggestions([]);
               getDogBreedImage(e);
             }}
           />
         )}
       </div>
+      {/* If dogBreedImage state is  set then we display the random image chosen here */}
       {dogBreedImage ? <Image src={dogBreedImage} /> : null}
     </div>
   );
