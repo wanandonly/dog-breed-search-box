@@ -3,6 +3,7 @@ import styles from "./SearchBox.module.scss";
 import { Results } from "../../components/Results/Results";
 import { API_ENDPOINT } from "../../constants";
 import { Image } from "../Image/Image";
+import { filterPossibleValues } from "../../utils/filter/filter";
 
 interface searchBoxInput {
   placeholder: string;
@@ -21,15 +22,11 @@ export function SearchBox({ placeholder, dogBreedData }: searchBoxInput) {
   // Handle the input change here with the auto suggestion functionality
   const handleInputChange = (event: HandleInputChange) => {
     const value = event.target.value;
-    let possibleValues: string[] = dogBreedData;
-
     setInputValue(value);
 
     // if the entered input is greater than 1 we show possible selections
     if (value.length > 1) {
-      const filteredSuggestions = possibleValues?.filter((suggestion) =>
-        suggestion.toLowerCase().includes(value.toLowerCase())
-      );
+      const filteredSuggestions = filterPossibleValues(dogBreedData, value);
       setSuggestions(filteredSuggestions);
     } else {
       setSuggestions([]);
