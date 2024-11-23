@@ -1,8 +1,18 @@
+@import "../../styles/breakpoints.scss";
+
 .searchWidget {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   border: 1px solid grey;
   border-radius: 4px;
   margin: 16px;
   padding: 16px;
+
+  @media (min-width: $tablet) {
+    align-items: flex-start;
+    width: fit-content;
+  }
 }
 
 .searchHeader {
