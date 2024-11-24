@@ -2,14 +2,19 @@
 
 .results {
   position: absolute;
-  left: 0;
+  left: -6px;
   top: 41px;
-  width: 260px;
+  width: 103.4%;
   border: 1px solid grey;
   padding: 0;
   margin: 16px 0 0;
   list-style-type: none;
   background: lightcyan;
+
+  @media (min-width: $small-mobile) {
+    left: 0;
+    width: 260px;
+  }
 
   @media (min-width: $tablet) {
     left: 163px;
